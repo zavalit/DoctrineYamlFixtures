@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+         bootstrap="./tests/bootstrap.php"
+>
+
+    <testsuites>
+        <testsuite name="Doctrine ORM Test Suite">
+            <directory>./tests/Zavalit/DoctrineYamlFixtures/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+     <var name="test_db_driver" value="pdo_mysql" />
+     <var name="test_db_name" value="doctrine_yaml_fixtures"/>
+     <var name="test_db_host" value="127.0.0.1"/>
+     <var name="test_db_user" value="root"/>
+     <var name="test_db_password" value="root"/>
+     <var name="test_yaml_metadata_path" value="./app/config"/>
+    </php>
+
+  </phpunit>
