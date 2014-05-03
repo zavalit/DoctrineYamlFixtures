@@ -1,9 +1,9 @@
 <?php 
-$dbConfig = array(
+$config['connectionParams'] = array(
   'driver'=>'pdo_mysql',
   'host'=>'127.0.0.1',
   'dbname'=>'doctrine_yaml_fixtures',
   'user'=>'root',
-  'password'=>''
+  'password'=>'root'
 );
-$yamlMetadataPath = __DIR__."/app/yaml";
+$config['yamlFixturesRoot'] = __DIR__."/YamlFixtures";
