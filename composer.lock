@@ -683,12 +683,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108"
+                "reference": "0faed3abffffbd3018f0dac6261fa1b59000bfee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/e4d12d7d6acccf75a5e504114e2df9195e494108",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/0faed3abffffbd3018f0dac6261fa1b59000bfee",
+                "reference": "0faed3abffffbd3018f0dac6261fa1b59000bfee",
                 "shasum": ""
             },
             "require": {
@@ -767,7 +767,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-04-23 21:43:40"
+            "time": "2014-05-01 21:56:28"
         },
         {
             "name": "psr/log",

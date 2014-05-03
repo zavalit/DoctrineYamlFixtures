@@ -6,8 +6,9 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Console\Helper\HelperSet;
 use Zavalit\DoctrineYamlFixtures\ConsoleRunner,
+    Zavalit\DoctrineYamlFixtures\Config,
     Zavalit\DoctrineYamlFixtures\Console\Command\CreateFixturesCommand,
-    Zavalit\DoctrineYamlFixtures\Console\Helper\YamlMetadataEntityManager;
+    Zavalit\DoctrineYamlFixtures\Console\Helper\ConfigHelper;
 
 
 class CreateYamlFixturesTest extends \PHPUnit_Framework_Testcase
@@ -16,17 +17,10 @@ class CreateYamlFixturesTest extends \PHPUnit_Framework_Testcase
 
   function setUp()
   {
-    $connectionParams = 
-      array('driver'=>$GLOBALS['test_db_driver'],
-        'dbname'=>$GLOBALS['test_db_name'],
-        'host'=>$GLOBALS['test_db_host'],
-        'user'=>$GLOBALS['test_db_user'], 
-        'password'=>$GLOBALS['test_db_password'],
-      );
+    $config['connectionParams'] = array('driver'=>'pdo_sqlite');
+    $config['yamlFixturesRoot'] = 1;
 
-    $yamlMetadataPath = $GLOBALS['test_yaml_metadata_path'];
-
-    $helperSet = new HelperSet(array(new YamlMetadataEntityManager($connectionParams, $yamlMetadataPath)));
+    $helperSet = new HelperSet(array(new ConfigHelper(new Config($config))));
      
     ConsoleRunner::init($helperSet);
     $this->command = ConsoleRunner::$console->find('zavalit:fixtures:create');
@@ -40,34 +34,13 @@ class CreateYamlFixturesTest extends \PHPUnit_Framework_Testcase
   function testCommandExists()
   {
     $this->assertTrue($this->command instanceof CreateFixturesCommand);
-  
   }
 
-  function testCommandHasHelperWithEntityManager()
+  function testCommandHasHelperWithConfig()
   {
-
-    $helper = $this->command->getHelper('em');
-    $this->assertTrue($helper->getEntityManager() instanceof \Doctrine\ORM\EntityManager);
-
+    $helper = $this->command->getHelper('helper_config');
+    $this->assertTrue($helper->getConfig() instanceof Config);
   }
-
-  function testCommandCreateYamlMapping()
-  {
-    $em = $this->command
-      ->getHelper('em')
-      ->getEntityManager();
-    
-    $path = $this->command->getHelper('em')->getYamlMetaDataPath();
-
-    $commandTester = new CommandTester($this->command);
-    $commandTester->execute(array('command'=>$this->command->getName()));
-    
-    $this->assertTrue(file_exists($path. '/Tags.dcm.yml'));
-
-
-
-  }
-
 
 
 }

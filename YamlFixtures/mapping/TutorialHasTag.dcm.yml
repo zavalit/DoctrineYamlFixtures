@@ -1,0 +1,39 @@
+TutorialHasTag:
+    type: entity
+    table: tutorial_has_tag
+    indexes:
+        tutorial_id:
+            columns:
+                - tutorial_id
+        tag_id:
+            columns:
+                - tag_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        tutorial:
+            targetEntity: Tutorial
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tutorial_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        tag:
+            targetEntity: Tags
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tag_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
