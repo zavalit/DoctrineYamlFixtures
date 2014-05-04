@@ -1,11 +1,11 @@
 Doctrine Yaml Fixtures
 ===============
 
+Project is not production ready yet. be patian:wt ;).
 
-Load your database schema in a yaml mapping:
 
 ```bash
-# 
+#create yaml schema mapping
 php bin/yamlfixtures zavalit:fixtures:create
 
 
