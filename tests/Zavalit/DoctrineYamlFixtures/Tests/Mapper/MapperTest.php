@@ -14,24 +14,13 @@ class MapperTest extends \PHPUnit_Framework_Testcase
 
   function setUp()
   {
-    $config['connectionParams'] = 
-      array('driver'=>$GLOBALS['test_db_driver'],
-        'dbname'=>$GLOBALS['test_db_name'],
-        'host'=>$GLOBALS['test_db_host'],
-        'user'=>$GLOBALS['test_db_user'], 
-        'password'=>$GLOBALS['test_db_password'],
-      );
-
-    $config['yamlFixturesRoot'] = sys_get_temp_dir();
-
-    $this->_config = $config;
-    $this->_factory = new Mapper\MapperFactory(new Config($config));
+    $c = $GLOBALS['testConfigInstance'];
+    $this->_factory = new Mapper\MapperFactory($c);
  
   }
 
   function tearDown()
   {
-    $this->_config = null;
     $this->_factory = null;
   
   }
@@ -43,6 +32,9 @@ class MapperTest extends \PHPUnit_Framework_Testcase
 
   function testDatabaseMapperCreatesYamlMapping()
   { 
+
+    $dir = $this->_factory->getConfig()->getMappingPath();
+    system("rm -rf ".escapeshellarg($dir));
 
     $dbMapper = new DatabaseMapper($this->_factory);
     $dbMapper->map();
@@ -56,8 +48,7 @@ class MapperTest extends \PHPUnit_Framework_Testcase
 
     $this->assertEquals($mapping['type'], 'entity');
   
-    $dir = $this->_factory->getConfig()->getMappingPath();
-    system("rm -rf ".escapeshellarg($dir));
+    #system("rm -rf ".escapeshellarg($dir));
 
   }
 

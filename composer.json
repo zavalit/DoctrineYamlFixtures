@@ -4,6 +4,7 @@
     "require": {
         "symfony/yaml": "*",
         "symfony/console": "*",
+        "symfony/finder": "*",
         "doctrine/common": "*", 
         "doctrine/orm": "*"
     },

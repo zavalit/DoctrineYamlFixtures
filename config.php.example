@@ -1,9 +1,18 @@
 <?php 
-$config['connectionParams'] = array(
+$config['srcConnectionParams'] = array(
   'driver'=>'pdo_mysql',
   'host'=>'127.0.0.1',
   'dbname'=>'doctrine_yaml_fixtures',
   'user'=>'root',
   'password'=>'root'
 );
+
+$config['destConnectionParams'] = array(
+  'driver'=>'pdo_mysql',
+  'host'=>'127.0.0.1',
+  'dbname'=>'doctrine_yaml_fixtures_test',
+  'user'=>'root',
+  'password'=>'root'
+);
+
 $config['yamlFixturesRoot'] = __DIR__."/YamlFixtures";

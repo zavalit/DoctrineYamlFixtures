@@ -4,6 +4,8 @@ Doctrine Yaml Fixtures
 
 Load your database schema in a yaml mapping:
 
+```bash
+# 
 php bin/yamlfixtures zavalit:fixtures:create
 
 

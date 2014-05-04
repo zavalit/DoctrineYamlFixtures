@@ -17,10 +17,7 @@ class CreateYamlFixturesTest extends \PHPUnit_Framework_Testcase
 
   function setUp()
   {
-    $config['connectionParams'] = array('driver'=>'pdo_sqlite');
-    $config['yamlFixturesRoot'] = 1;
-
-    $helperSet = new HelperSet(array(new ConfigHelper(new Config($config))));
+    $helperSet = new HelperSet(array(new ConfigHelper($GLOBALS['testConfigInstance'])));
      
     ConsoleRunner::init($helperSet);
     $this->command = ConsoleRunner::$console->find('zavalit:fixtures:create');
@@ -40,6 +37,27 @@ class CreateYamlFixturesTest extends \PHPUnit_Framework_Testcase
   {
     $helper = $this->command->getHelper('helper_config');
     $this->assertTrue($helper->getConfig() instanceof Config);
+  }
+
+  function testFixturesOptionCallYamlFixturesLoaderLoad()
+  {
+    $this->markTestSkipped('buggy mocking');
+
+    $loaderMock = $this->getMockBuilder('Zavalit\DoctrineYamlFixtures\Fixturing\YamlFixturesLoader')
+                       ->setMethods(array('load'))
+                       ->disableOriginalConstructor()
+                       ->getMock();
+    $loaderMock->expects($this->once())
+      ->method('load');
+
+    $commandTester = new CommandTester($this->command);
+    $commandTester->execute(
+      array('command'=>$this->command->getName(),
+            '--fixtures'=>true
+      )
+    );
+
+  
   }
 
 

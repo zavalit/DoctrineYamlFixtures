@@ -18,12 +18,20 @@
     </testsuites>
 
     <php>
-     <var name="test_db_driver" value="pdo_mysql" />
+      
+    <var name="test_db_driver" value="pdo_mysql" />
      <var name="test_db_name" value="doctrine_yaml_fixtures"/>
      <var name="test_db_host" value="127.0.0.1"/>
+     <var name="test_yaml_metadata_path" value="./app/config"/>
      <var name="test_db_user" value="root"/>
      <var name="test_db_password" value="root"/>
-     <var name="test_yaml_metadata_path" value="./app/config"/>
+     
+     <var name="test_fixtures_db_driver" value="pdo_mysql" />
+     <var name="test_fixtures_db_name" value="doctrine_yaml_fixtures_test"/>
+     <var name="test_fixtures_db_host" value="127.0.0.1"/>
+     <var name="test_fixtures_yaml_metadata_path" value="./app/config"/>
+     <var name="test_fixtures_db_user" value="root"/>
+     <var name="test_fixtures_db_password" value="root"/>
     </php>
 
   </phpunit>

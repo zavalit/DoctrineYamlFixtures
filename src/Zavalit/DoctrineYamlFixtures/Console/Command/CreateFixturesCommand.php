@@ -9,7 +9,7 @@ use Symfony\Component\Console\Command\Command,
 
 use Zavalit\DoctrineYamlFixtures\Mapper\Map;
 use Zavalit\DoctrineYamlFixtures\Mapper\MapperFactory; 
-
+use Zavalit\DoctrineYamlFixtures\Fixturing\YamlFixturesLoader;
 class CreateFixturesCommand extends Command 
 { 
 
@@ -43,7 +43,11 @@ class CreateFixturesCommand extends Command
 
     if(true === $input->getOption('fixtures')){
 
+      $yamlLoader = new YamlFixturesLoader($config);
+      $ref = new \ReflectionClass($yamlLoader);
+      $yamlLoader->load();
       $outputData[] = "Yaml Fixtures are created";
+
     }
 
    $output->writeln(implode(PHP_EOL, $outputData)); 
