@@ -7,7 +7,7 @@ Project is not production ready yet. be patian:wt ;).
 ```bash
 #create yaml schema mapping
 php bin/yamlfixtures zavalit:fixtures:create
-
+```
 
 
 
