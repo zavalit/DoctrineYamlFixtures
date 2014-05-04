@@ -1,7 +1,7 @@
 Doctrine Yaml Fixtures
 ===============
 
-Project is not production ready yet. be patian:wt ;).
+Project is not production ready yet. be patient ;).
 
 
 ```bash
